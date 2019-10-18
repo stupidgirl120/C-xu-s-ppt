@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+//struct NodeType{
+//    char First_Name[30], Last_Name[30];
+//    long SSN;
+//int age;
+//    char Adr[60];
+//};
+
+int main()
+{
+    ofstream outf1("a1.txt",ios::out);
+    if (!outf1) //如果文件打开失败,fout1返回0值
+    {
+        cout<<"Cannot open output file.\n";
+        exit(1);
+    }
+    outf1<<100<<' '<<hex<<100<<endl;
+    outf1<<"hello\n";
+    outf1.close();
+
+    ifstream inf1("a1.txt",ios::in);
+    if (!inf1) //如果文件打开失败,fout1返回0值
+    {
+        cout<<"Cannot open output file.\n";
+        exit(1);
+    }
+    char str[80];
+    while(!inf1.eof()){
+            inf1.getline(str,80);
+            cout<<str<<endl;
+    }
+
+    inf1.close();
+
+    return 0;
+}
+
+
+
