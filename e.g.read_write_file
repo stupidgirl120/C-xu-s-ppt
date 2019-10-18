@@ -1,0 +1,39 @@
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
+#include <string.h>
+
+using namespace std;
+
+struct List{
+	char course[15]; int score;
+};
+
+int main(){
+    List List1[2]={"Computer",90,"Mathematics",78};
+    ofstream out("A1.txt",ios::binary);
+    if (!out) //如果文件打开失败,out返回0值
+        { cout<<"Cannot open output file.\n";
+          exit(1);
+        } //退出程序,其作用与exit相同
+    for (int i=0;i<2;i++)
+        out.write((char*) &List1[i],sizeof(List1[i]));  //第一个参数的数据类型为char*， 如果是其他类型，必须进行类型转换。
+    out.close();
+
+    List List2[2];
+    ifstream in("A1.txt",ios::binary);
+    if (!in) //如果文件打开失败,in返回0值
+        { cout<<"Cannot open input file.\n";
+          exit(1);
+        }
+        for (int i=0;i<2;i++)
+            { in.read((char*) &List2[i],sizeof(List2[i]));
+            cout<<List2[i].course<<" "<<List2[i].score<<endl;
+            }
+    in.close();
+
+    return 0;
+}
+
+
+
